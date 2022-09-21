@@ -5,6 +5,7 @@ from PIL import Image
 from torch.utils.data import Dataset
 from torchvision import transforms
 
+data_path = os.environ["TMPDIR"]+"/marburg384"
 
 class LSUNBase(Dataset):
     def __init__(self,
@@ -61,12 +62,12 @@ class LSUNBase(Dataset):
 
 class LSUNChurchesTrain(LSUNBase):
     def __init__(self, **kwargs):
-        super().__init__(txt_file="data/lsun/church_outdoor_train.txt", data_root="data/lsun/churches", **kwargs)
+        super().__init__(txt_file="data/lsun/church_outdoor_train.txt", data_root=data_path, **kwargs)
 
 
 class LSUNChurchesValidation(LSUNBase):
     def __init__(self, flip_p=0., **kwargs):
-        super().__init__(txt_file="data/lsun/church_outdoor_val.txt", data_root="data/lsun/churches",
+        super().__init__(txt_file="data/lsun/church_outdoor_val.txt", data_root=data_path,
                          flip_p=flip_p, **kwargs)
 
 
