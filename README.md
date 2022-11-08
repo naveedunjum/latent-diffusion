@@ -1,3 +1,30 @@
+# Overview for HPC cluster
+This is the forked repo of https://github.com/CompVis/latent-diffusion.  Please refer to this for any differences or problems. 
+
+This repo can train an unconditional latent diffusion model, while they have not provided a way to train conditional models.
+
+Set up a conda environment as described below in the [Requirements](#Requirements) and then you are good to go. 
+Jobs to HPC clusters are submitted by the script `marburgJob.sh`. Use `sbatch` to submit the scripts. This script uses the methods as described in the **Training LDMs** section to train the model. Training logs and checkpoints will be stored in the `logs` folder. 
+## Data 
+I changed the already given configuration for LSUN data located at `configs/latent-diffusion/lsun_churches-ldm-kl-8.yaml`. Here you can change the batch size, num_workers, image size of the data etc. This script uses functions and data path from `ldm/data/lsun.py` to feed configuration to the model. I have used the `$TMP` folder for storing images and thus the default data path is `os.environ["TMPDIR"]+"/marburg384"`. You can change this in `ldm/data/lsun.py`.
+
+## Differences
+I have changed the `main.py` by removing the `output` parameter of the `on_train_epoch_end` function as it was unnecessary and was giving errors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Latent Diffusion Models
 [arXiv](https://arxiv.org/abs/2112.10752) | [BibTeX](#bibtex)
 
